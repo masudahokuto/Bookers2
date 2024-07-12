@@ -1,2 +1,10 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<%= image_tag @user.image %>
+  <br>
+<p><%= link_to @user.name, user_path(@user) %></p>
+  <br>
+<p><%= link_to @book.title, book_path(@book) %></p>
+  <br>
+<p><%= @book.opinion %></p>
+  <br>
+  <%= button_to "Edit", edit_book_path(@book), method: :get, class: "edit-button" %>
+  <%= button_to "Destroy", @book, method: :delete, data: { confirm: "Are you sure?" }, class: "destroy-button" %>
