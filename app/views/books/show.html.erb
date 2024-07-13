@@ -1,4 +1,10 @@
-<%= image_tag @user.image %>
+<% if @user.image.attached? %>
+  <%= image_tag url_for(@user.image), alt: "User image" %>
+<% else %>
+  <% default_width = 100 %>
+  <% default_height = 100 %>
+  <%= image_tag "no_image.jpg", alt: "Default Image", width: default_width, height: default_height %>
+<% end %>
   <br>
 <p><%= link_to @user.name, user_path(@user) %></p>
   <br>
@@ -6,5 +12,7 @@
   <br>
 <p><%= @book.opinion %></p>
   <br>
+<% if current_user.id == @book.user_id %>
   <%= button_to "Edit", edit_book_path(@book), method: :get, class: "edit-button" %>
   <%= button_to "Destroy", @book, method: :delete, data: { confirm: "Are you sure?" }, class: "destroy-button" %>
+<% end %>

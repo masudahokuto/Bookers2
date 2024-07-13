@@ -19,7 +19,8 @@
 
 <% @books.each do |book| %>
   <br>
-  <%= book.title %>
+  <p><%= link_to book.title, books_path %></p>
+  <%=  %>
   <br>
   <%= book.opinion %>
   <br>
