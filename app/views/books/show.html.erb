@@ -13,6 +13,6 @@
 <p><%= @book.opinion %></p>
   <br>
 <% if current_user.id == @book.user_id %>
-  <%= button_to "Edit", edit_book_path(@book), method: :get, class: "edit-button" %>
-  <%= button_to "Destroy", @book, method: :delete, data: { confirm: "Are you sure?" }, class: "destroy-button" %>
+  <a class="btn btn-sm btn-success edit-button" href="<%= edit_book_path(@book) %>">Edit</a>
+  <a data-confirm="本当に消しますか？" class="btn btn-sm btn-danger destroy-button" rel="nofollow" data-method="delete" href="<%= book_path(@book) %>">Destroy</a>
 <% end %>

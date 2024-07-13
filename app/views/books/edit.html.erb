@@ -1,2 +1,30 @@
-<h1>Books#edit</h1>
-<p>Find me in app/views/books/edit.html.erb</p>
+<body>
+  <main>
+    <p id="notice"></p>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+          <h1>Editing Book</h1>
+          <form action= @book accept-charset="UTF-8" method="post">
+            <input type="hidden" name="_method" value="patch" autocomplete="off">
+              <div class="form-group">
+                <label for="book_title">Title</label>
+                <input type="text" class="form-control" id="inputName" value="<%= @book.title %>" autofocus>
+              </div>
+  　　          <div class="form-group">
+                <label for="book_opinion">Opinion</label>
+                <textarea class="form-control" id="inputName" autofocus><%= @book.opinion %></textarea>
+              </div>
+              <div class="form-group">
+                <input type="submit" name="commit" value="Update Book" class="btn btn-success" data-disable-with="Update Book">
+              </div>
+            </input>
+            <a href="<%= book_path(@book) %>">Show</a>
+              |
+            <a href="<%= books_path %>">Back</a>
+          </form>
+  　　    </div>
+      </div>
+    </div>
+  </main>
+</body>
