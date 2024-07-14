@@ -1,0 +1,35 @@
+<h2>User info</h2>
+<% if user.image.attached? %>
+  <%= image_tag url_for(user.image), alt: "User image" %>
+<% else %>
+  <% default_width = 100 %>
+  <% default_height = 100 %>
+  <%= image_tag "no_image.jpg", alt: "Default Image", width: default_width, height: default_height %>
+<% end %>
+<tbody>
+  <tr>
+  </tr><tr>
+    <br>
+    <th>name</th>
+    <th><%= user.name %></th>
+  </tr>
+  <tr>
+    <br>
+    <th>introduction</th>
+    <th><%= user.introduction %></th>
+  </tr>
+</tbody>
+<p><%= link_to "show画面遷移", user_path(user.id) %></p>
+<h1>New book</h1>
+<% if user == current_user %>
+  <p><%= link_to "プロフィール編集", edit_user_path(user) %></p>
+<% else %>
+  <p><%= link_to "プロフィール編集", user_path(current_user) %></p>
+<% end %>
+<%= form_with model: book do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  <h4>Opinion</h4>
+  <%= f.text_area :opinion %>
+  <%= f.submit 'Create Book' %>
+<% end %>

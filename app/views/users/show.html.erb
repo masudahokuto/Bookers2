@@ -1,11 +1,5 @@
-<% if @user.image.attached? %>
-  <%= image_tag url_for(@user.image), alt: "User image" %>
-<% else %>
-  <% default_width = 100 %>
-  <% default_height = 100 %>
-  <%= image_tag "no_image.jpg", alt: "Default Image", width: default_width, height: default_height %>
+<%= render 'user_info', user: @user, book: @book %>
+<% @books.each do |book| %>
+  <p><%= link_to book.title, book_path(book) %></p>
+  <p><%= book.opinion %></p>
 <% end %>
-
-<p>name : <%= @user.name %></p>
-<p>introduction : <%= @user.introduction %></p>
-<p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
