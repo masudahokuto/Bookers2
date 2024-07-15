@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+before_action :is_matching_login_user, only: [:index, :show, :edit, :update]
   def index
     @users = User.all
     @book = Book.new
@@ -25,5 +25,11 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :image, :introduction)
+  end
+  
+  def is_matching_login_user
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
   end
 end
