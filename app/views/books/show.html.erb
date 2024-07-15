@@ -1,12 +1,32 @@
 <%= render 'users/user_info', user: @user, book: @newbook %>
-  <br>
-<p><%= link_to @user.name, user_path(@user) %></p>
-  <br>
-<p><%= link_to @book.title, book_path(@book) %></p>
-  <br>
-<p><%= @book.opinion %></p>
-  <br>
-<% if current_user.id == @book.user_id %>
-  <%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-sm btn-success edit-button' %>
-  <%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' }, class: 'btn btn-sm btn-danger destroy-button', rel: 'nofollow' %>
-<% end %>
+  <div class="col-md-8 offset-md-1">
+    <h2>Book detail</h2>
+    <table class="table table-hover table-inverse">
+      <tbody>
+        <tr>
+          <td class="col-md-1">
+            <% if @book.user && @book.user.image.attached? %>
+              <%= link_to user_path(@book.user) do %>
+                <%= image_tag url_for(@book.user.image), alt: "User image", width: "100", height: "100" %>
+              <% end %>
+            <% else %>
+              <%= image_tag "no_image.jpg", alt: "Default Image", width: "100", height: "100" %>
+            <% end %>
+            <%= link_to @user.name, user_path(@user) %>
+          </td>
+          <td>
+            <%= link_to @book.title, book_path(@book) %>
+          </td>
+          <td><%= @book.opinion %></td>
+          <% if current_user.id == @book.user_id %>
+            <td>
+              <%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-sm btn-success edit-button' %>
+            </td>
+            <td>
+              <%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' }, class: 'btn btn-sm btn-danger destroy-button', rel: 'nofollow' %>
+            </td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
