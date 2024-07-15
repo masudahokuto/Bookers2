@@ -20,9 +20,8 @@
           <label for="Opinion">Opinion</label>
           <%= f.text_area :opinion, id:"inputOpinion", class: "form-control"%>
         </div>
-        <%= f.submit "Update User", class: "btn btn-success" %>
+        <%= f.submit "Update User", class: "btn btn-success mb-3" %>
       <% end %>
-        <br>
       <%= link_to "Show", book_path(@book) %>
         |
       <%= link_to "back", books_path %>

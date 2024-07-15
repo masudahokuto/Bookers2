@@ -1,17 +1,39 @@
-<%= render 'user_info', user: current_user, book: @book %>
-<% @users.each do |user| %>
-  <div>
-    <p><%= user.name %></p>
-    <p><%= link_to "show", user_path(user) %></p>
+  <%= render 'user_info', user: current_user, book: @book %>
+  <div class="col-md-8 offset-md-1">
+    <h2>Users</h2>
+    <table class="table table-hover table-inverse">
+      <thead>
+        <tr>
+          <th>
+            image
+          </th>
+          <th>
+            name
+          </th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td class="col-md-4">
+              <% if user.image.attached? %>
+                <%= link_to user_path(user) do %>
+                  <%= image_tag url_for(user.image), alt: "User image", width: "80", height: "80" %>
+                <% end %>
+              <% else %>
+                <%= image_tag "no_image.jpg", alt: "Default Image", width: "80", height: "80" %>
+              <% end %>
+            </td>
+            <td class="col-md-6">
+              <%= user.name %>
+            </td>
+            <td>
+              <%= link_to "Show", user_path(user) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-<% end %>
-<tbody><tr></tr>
-  <tr>
-	  <th>name</th>
-	  <th>111111</th>
-  </tr>
-  <tr>
-	  <th>introduction</th>
-	  <th></th>
-  </tr>
-</tbody>
+</main>
