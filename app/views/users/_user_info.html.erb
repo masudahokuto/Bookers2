@@ -51,8 +51,7 @@
             <label for="inputOpinion">Opinion</label>
             <%= f.text_area :opinion, id:"inputOpinion", class: "form-control", value: "" %>
           </div>
-          <form action="/books" method="post">
-            <button type="submit" class="btn btn-success">Create Book</button>
-          </form>
+          <%= f.submit 'Create Book', class: "btn btn-success" %>
+
         <% end %>
       </div>

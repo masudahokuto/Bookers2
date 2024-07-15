@@ -1,4 +1,4 @@
-<%= render 'users/user_info', user: @user, book: @book %>
+<%= render 'users/user_info', user: @user, book: @newbook %>
   <br>
 <p><%= link_to @user.name, user_path(@user) %></p>
   <br>
@@ -7,6 +7,6 @@
 <p><%= @book.opinion %></p>
   <br>
 <% if current_user.id == @book.user_id %>
-  <a class="btn btn-sm btn-success edit-button" href="<%= edit_book_path(@book) %>">Edit</a>
-  <a data-confirm="本当に消しますか？" class="btn btn-sm btn-danger destroy-button" rel="nofollow" data-method="delete" href="<%= book_path(@book) %>">Destroy</a>
+  <%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-sm btn-success edit-button' %>
+  <%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' }, class: 'btn btn-sm btn-danger destroy-button', rel: 'nofollow' %>
 <% end %>
