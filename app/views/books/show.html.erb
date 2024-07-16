@@ -5,19 +5,15 @@
       <tbody>
         <tr>
           <td class="col-md-1">
-            <% if @book.user && @book.user.image.attached? %>
-              <%= link_to user_path(@book.user) do %>
-                <%= image_tag url_for(@book.user.image), alt: "User image", width: "100", height: "100" %>
-              <% end %>
-            <% else %>
-              <%= image_tag "no_image.jpg", alt: "Default Image", width: "100", height: "100" %>
+            <%= link_to user_path(@user) do %>
+              <%= image_tag @user.get_profile_image(80, 80) %>
             <% end %>
-            <%= link_to @user.name, user_path(@user) %>
+          <%= link_to @user.name, user_path(@user) %>
           </td>
           <td>
             <%= link_to @book.title, book_path(@book) %>
           </td>
-          <td><%= @book.opinion %></td>
+          <td><%= @book.body %></td>
           <% if current_user.id == @book.user_id %>
             <td>
               <%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-sm btn-success edit-button' %>

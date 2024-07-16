@@ -4,7 +4,13 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h1>Editing Book</h1>
         <% if @book.errors.any? %>
-          <h3><%= @book.errors.count %>errors prohibited this obj from being saved:</h3>
+          <h3>
+            <% if @book.errors.count > 1 %>
+              <%= @book.errors.count %> errors prohibited this obj from being saved:
+            <% else %>
+              <%= @book.errors.count %> error prohibited this obj from being saved:
+            <% end %>
+          </h3>
           <ul>
             <% @book.errors.full_messages.each do |message| %>
               <li><%= message %></li>
@@ -17,14 +23,14 @@
           <%= f.text_field :title, id:"inputTitle", class: "form-control"%>
         </div>
         <div class="form-group">
-          <label for="Opinion">Opinion</label>
-          <%= f.text_area :opinion, id:"inputOpinion", class: "form-control"%>
+          <label for="Body">Opinion</label>
+          <%= f.text_area :body, id:"inputBody", class: "form-control"%>
         </div>
-        <%= f.submit "Update User", class: "btn btn-success mb-3" %>
+        <%= f.submit "Update Book", class: "btn btn-success mb-3" %>
       <% end %>
       <%= link_to "Show", book_path(@book) %>
         |
-      <%= link_to "back", books_path %>
+      <%= link_to "Back", books_path %>
       </form>
     </div>
   </div>

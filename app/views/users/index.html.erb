@@ -17,12 +17,8 @@
         <% @users.each do |user| %>
           <tr>
             <td class="col-md-4">
-              <% if user.image.attached? %>
-                <%= link_to user_path(user) do %>
-                  <%= image_tag url_for(user.image), alt: "User image", width: "80", height: "80" %>
-                <% end %>
-              <% else %>
-                <%= image_tag "no_image.jpg", alt: "Default Image", width: "80", height: "80" %>
+              <%= link_to user_path(user) do %>
+                <%= image_tag user.get_profile_image(80, 80) %>
               <% end %>
             </td>
             <td class="col-md-6">

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-before_action :is_matching_login_user, only: [:index, :show, :edit, :update]
+  before_action :is_matching_login_user, only: [:edit, :update]
   def index
     @users = User.all
     @book = Book.new
@@ -17,19 +17,26 @@ before_action :is_matching_login_user, only: [:index, :show, :edit, :update]
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      flash[:notice] = "You have updated user successfully."
+      redirect_to user_path(@user.id)
+    else
+      @users = User.all
+      render :edit
+      return
+    end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :image, :introduction)
+    params.require(:user).permit(:name, :profile_image, :introduction)
   end
-  
+
   def is_matching_login_user
-    unless user_signed_in?
-      redirect_to new_user_session_path
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to user_path(current_user)
     end
   end
 end
